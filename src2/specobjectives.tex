@@ -1,0 +1,54 @@
+\noindent\textbf{C.1.3 Specific objectives}
+
+\subsubsection*{Measurement of properties of LXe, crucial  for PET applications}
+The energy resolution, spatial resolution and CRT in LXe depend on the total photon yield for an incoming gamma of 511 keV, as well as the fraction of that yield that goes to scintillation and ionization. While there are a number of measurements of the above quantities in the literature, the  data is not fully consistent, some of the most relevant measurements were made more than three decades ago, and the uncertainties, in general, are large\footnote{for a review see E. Aprile and T. Doke, {\em Liquid Xenon Detectors for Particle Physics and Astrophysics}, Rev. Mod. Phys. 82 2053-2097 (2010).}. A precise and consistent measurement, using photons of the relevant energy for PET (511 keV) is an essential ingredient for the development of a LXe-based scanner such as PETALO. 
+
+Specifically, we propose to measure:
+\begin{itemize}
+\item The total photon yield for photons of 511 keV.
+\item The fraction of the total yield due to primary scintillation and the fraction due  to the slow recombination of the electrons.
+\item The fraction of the primary scintillation yield due to singlet mode and and its time decay constant.
+\item The fraction of the primary scintillation yield due to triplet mode and and its time decay constant.
+\end{itemize}
+
+See the section on methodology for the description of the experiment intended to measure this properties. 
+
+\subsubsection*{Detailed measurement of the energy resolution and spatial resolution of the LXSC}
+
+The energy resolution R of a liquid xenon scintillation detector is a combination of light collection variation due to the detector geometry R$_g$, the statistical fluctuation of number of photoelectrons from the sensors R$_s$, the fluctuation of electron-ion recombination due to escape electrons $R_r$, and the intrinsic resolution from liquid xenon scintillation light R$_i$, due to the non-proportionality of scintillation yield due to secondary electrons. Then:
+
+\begin{equation}
+R^2 = R_g^2 + R_s^2 + R_r^2 + R_i^2
+\end{equation}
+
+The contribution of the intrinsic terms, ($R_r$~and R$_i$) has been measured to be
+around 11 \% FWHM\footcite{aprileRes}. The Master thesis cited above computed the contribution expected by the other two terms (R$_g$~and R$_s$) to be of the order of 3\% FWHM for a large
+$5 \times 5 \times 5 {\rm ~cm^3}$ LXSC. We propose to carry on an experimental measurement (see the section on methodology for the description of the experimental setup) to measure $R$. The contribution of R$_g$~and R$_s$~can be obtained from Monte Carlo calculation, allowing an updated measurement of the intrinsic resolution in LXe. An overall resolution of the order of 12\% FWHM, which is of the same order as that achieved with LSO detectors is expected. 
+
+The spatial resolution in the (x,y) coordinates (transverse to the gammas line of flight) will be obtained by the weighted pulses in the SiPMs. The digital resolution would be
+$p/\sqrt{12}$, where $p$~is the pitch. With a pitch of 5 mm (see methodology) we expect 1.44 mm rms or 3.3 mm FWHM. Weighting with the SiPM amplitude we expect a resolution in the range of 1-2 mm FWHM. The longitudinal coordinate (along the gammas line of flight) is obtained by computing the ratio between the
+total signal recorded in the entry and exit face, and is expected to be in the same range (1-2 mm FWHM).    
+
+\subsubsection*{Detailed measurement of the  CRT resolution of the LXSC}
+
+The intrinsic CRT of a LXe detector depends on two factors: a) the time resolution to trigger in interactions occurring in individual cells and b) the time jitter introduced by the synchronization of the individual triggers (singles) into a ``double'' involving two cells. 
+
+The ``single'' time resolution, on the other hand, depends on: a) the ratio $N/\tau$, where $N$ is the number of photons emitted with a given time decay constant $\tau$; b) the DOI correction, which takes into account that not all the interactions in the cell occur in the same point; c) the SiPM PDE; d) the time jitter introduced by the SiPM and the associated electronics. 
+
+The expected number of photon in LXe with a time constant of 2.2 ns is about 6,000 (a precise measurement of both the time constant and the amplitude of the fast signal is part of the first specific objective of this proposal, see above), thus $N\tau = 6000/2.2 = 2727$, to be compared with the corresponding number for LSO $N\tau = 14000/40 = 35$. The ratio between both quantities is almost 8. Thus, the intrinsic CRT resolution of LXe is much better than that of LSO. Furthermore, the capability to measure the DOI with very good resolution ($\sim$ 1 mm) minimizes the jitter introduced by the DOI correction, which goes like
+${\rm \Delta t = \Delta z (n - 1) 0.033 ns/cm}$, where $\Delta t$~ is the time resolution introduced by the resolution $\Delta z$ in the determination of the DOI $z$ and $n$~is the refraction index. In LXe, assuming a DOI resolution of 2 mm FWHM, and setting $n=1.6$ (for VUV light), one obtains $\Delta t \sim 4$~ps FWHM. In a conventional LSO crystal of 2 cm length, $\Delta t \sim 35$~ps FWHM.
+
+The effect of the SiPM needs to be carefully measured. The time jitter introduced by the SiPM depends of its capacitance (thus it is better to use SiPMs of moderate size, e.g., 3 mm rather than 6 mm), the time constant of the SiPM signal, the PDE, etc. A detailed model of the SiPM can be constructed and incorporated into a simulation to predict the effect of the sensor in the CRT, and experimental measurements are needed to validate the model and to produce an estimation of the CRT that the technology can achieve (see next section).
+
+\subsubsection*{Detailed evaluation of the sensitivity of a full-body PET scanner based on the PETALO concept}
+\input{src/simFullRing}
+
+\\
+
+%The effect of the ASIC and the synchronization electronics is also very relevant, but the existing experimental corpus shows that the overall time jitter can be kept below 50 ps, perhaps as low as 25 ps. The preliminary calculation of this researcher suggests that the CRT of singles obtained convoluting the time stamps of several photoelectrons will also be below 50 ps using the parameters of standard, high-performance SiPMs, as those provided by Hamamatsu. Thus, an overall CRT of less than 100 ps is expected. An experimental demonstration of this value would be a true break-through for the technology. 
+%
+%
+%\subsubsection*{Measurement of the intrinsic CRT of the LXSC: simulation,construction, commissioning and studies with the P2 prototype}
+%The P2 prototype will use two LXUV cells separated by about 10 cm. A Na-22 source will emit back-to-back 511 keV gammas that will be recorded by the cells. 
+%
+%The first round of measurements will use discreet electronics to ensure maximum control of all the potential time jitters. The signal from each of the 9 SiPMs of the entry face of the two boxes will be  will be The system will be carefully designed and optimized to minimize the time jitter of the SiPMs. High time resolution ASIC electronics, such as that provided by PETSYS will be used.  The 9 SiPMs of the entry face of both cells will be 

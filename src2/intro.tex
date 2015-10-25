@@ -1,0 +1,287 @@
+\\
+\noindent\textbf{C.1.1 Introduction and state-of-the-art}
+
+\subsubsection*{Positron Emission Tomography}
+Positron Emission Tomography (PET) is a non invasive imaging technique that produces a three-dimensional image of functional processes --it does not show anatomic features, but it rather  measures metabolic activity of the cells-- in the body. PET is used in
+both clinical and pre-clinical research to study the molecular bases and treatments of
+disease. In clinical applications, PET has proven its critical value in several areas such as
+cancer diagnosing and staging, assessing neurological diseases such as Alzheimer's disease
+and dementias, myocardium blood flow and viability evaluation in cardiology, as well as an
+increasing role in radiotherapy treatment planning and chemotherapy monitoring. 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.7]{img/MAPD_radiotracer.jpg}
+	\includegraphics[scale=0.7]{img/MAPD_positronelectronannihilation.jpg}
+	\includegraphics[scale=0.9]{img/LOR.pdf}
+	\caption{\label{fig.fdg}: Top left panel: FDG is an organic molecule which contains a radioactive isotope of fluor. Top right panel: the radionuclide decays emitting positrons, which annihilate after a short path length in the body tissue with an electron, resulting in the emission of two back-to-back photons of 511 keV. Bottom panel: photons are recorded in coincidence and a line-of-response, LOR is formed. }
+\end{figure}
+
+The principle of operation relies in injecting into the patient a  
+biologically active molecule doped with a radioactive isotope, called tracer (a standard tracer is FDG, formed substituting an atom of oxygen by the isotope \ensuremath{^{18}}F in a glucose molecule, see Figure \ref{fig.fdg}, top left panel). The radionuclide decays and the resulting positrons
+subsequently annihilate with electrons after traveling a short distance within the subject.
+Each annihilation produces two 511 keV photons emitted most of the time in opposite
+directions (Figure \ref{fig.fdg}, top right panel) and these photons are registered by a detection system. The signal of each photon
+from every pair coincidence event is processed individually for spatial, energy, and arrival
+time information. For a pair coincidence event, if the energy of two photons stays within a
+preset energy window, of the order of 20--30\% full-width-half-maximum (FWHM) for commercial systems, centered on the 511keV photopeak, and the timing difference stays within a preset time window (typically of up to some 10 ns), a
+coincidence event will be registered and constitutes a line-of-response (LOR) for image
+reconstruction (Figure \ref{fig.fdg}, bottom panel).
+
+\subsubsection*{Detectors used for PET scanners}
+
+\begin{figure}[!bthp]
+	\centering
+	\includegraphics[scale=1.0]{img/Detectors.pdf}
+	\caption{\label{fig.detector} Schematic of a block detector with finely segmented scintillator crystals read out
+by four photo-multiplier tubes.}
+\end{figure}
+
+
+The physical properties that define a detector suitable for a PET scanner are: 
+{\bf Attenuation length ($\lambda$)}, which sets the scale of the length (across the photon line of flight) that the detector has to have in order to stop most of the incoming radiation.
+{\bf Density ($\rho$)}, which is related with the total size and weight of the detector.
+{\bf Photon yield per keV ($Y$)}, which must be as high as possible to record large signals. 
+{\bf Refraction index ($r$)}, which must be as close as possible to the refraction index of photodetectors (glass in case of PMTS, $Si_3N_4$~ and $SiO_2$ layers for passivation and protection in case of semiconductor devices such as APDs and SiPMs). 
+{\bf Energy resolution at 511 keV ($\sigma_E$)}, which must be as good as possible. 
+{\bf Transverse spatial resolution ($\sigma_T$)} (relative to the photon line of flight), which in turn depends on the photon yield and the granularity of the readout sensors.
+{\bf Longitudinal spatial resolution ($\sigma_L$)}, important to minimize the so-called parallax error and crucial to achieve a good coincidence resolving time (CRT).   
+{\bf Scintillation decay time ($\tau$)}, which must be as fast a possible, to maximize the number of events acquired per unit time and to minimize the window used to correlate events in different crystals. In addition, if the system has very good time resolution (in the range of few hundred picoseconds) time-of-flight measurements (TOF) are possible. 
+
+Most modern PETs are built as rings using monolithic or segmented solid scintillating detectors read out by light sensitive detectors such as photomultipliers (PMTs), or silicon photomultipliers (SiPMs). Many of the high-end scanners use lutetium oxyorthosilicate (LSO) \footnote{LYSO (or lutetium-yttrium oxyorthosilicate) is also widely used. Both materials are very similar. In the rest of this document we will refer, for definiteness to LSO.}, which is characterized by an {\bf attenuation length of 12 mm} to 511 keV photons, a  {\bf light yield of 26 photons per keV}, and a {\bf scintillation decay time of 40 ns}. This three parameters, essential for the performance of a PET scanner, result in an {\bf energy resolution} of, typically 10-15 \% FWHM; a {\bf spatial resolution} of the order of 2-3 mm FWHM for the transverse coordinates. This is typically achieved using segmented detectors read out by SiPMs. For example, for detectors of $3 \times 3$~mm$^2$~cross section the longitudinal coordinate is not measured in general, introducing an error in the depth of the interaction (DOI) which depends of the detector thickness $t$, which is typically around 20 mm. The error is $\sim t/\sqrt{12}$, thus 6 mm rms, which means$\sim 14$~mm FWHM. Finally, the {\bf coincidence resolving time, CRT} measured in the laboratory is of the order of 200 ps (for systems at ambient temperature) and 500-600 ps for commercial devices.
+
+\subsubsection*{Signal and noise in PET reconstruction}
+
+\begin{figure}[!bthp]
+	\centering
+	\includegraphics[scale=1.0]{img/MAPD_coincidencecategories.jpg}
+	\caption{\label{fig.coi} Coincidence detection principle in a PET detector.}
+\end{figure}
+
+The reconstruction of the image in a PET system requires crossing many LORs which in turn define one emission point in the area under study. LORs are formed by detecting the coincidence of two photons. Three types of coincidences, illustrated in Figure \ref{fig.coi}, are relevant:
+
+\begin{itemize}
+\item {\bf True coincidences} occur when both photons from an annihilation event are detected by detectors, neither photon undergoes any form of interaction prior to detection, and no other event is detected within the coincidence time-window.
+\item {\bf A scattered coincidence} is one in which one of the detected photons (sometimes both) has undergone at least one Compton scattering event prior to detection. Since the direction of the photon changes due to the scattering process, the resulting coincidence event will, most likely, produce a wrong LOR. Scattered coincidences add a background to the true coincidence distribution which changes slowly with position, decreasing contrast and causing the isotope concentrations to be overestimated. They also add statistical noise to the signal. The number of scattered events detected depends on the volume and attenuation characteristics of the tissue being imaged. The best way to reject scattered coincidences is to build a PET system based on detectors with excellent energy resolution, since the scattered photons have also lost a fraction of their energy, and can therefore be rejected by imposing that the measured energy is inside a narrow window around 511 keV.
+\item {\bf Random coincidences} occur when two photons, not arising from the same annihilation event, impinge the detectors within the coincidence time window of the system. As with scattered events, the number of random coincidences detected also depends on the volume and attenuation characteristics of the object being imaged, and on the geometry of the camera. The distribution of random coincidences is fairly uniform across the field of view and will cause isotope concentrations to be overestimated if not corrected for. Random coincidences also add statistical noise to the data. The best way to reject random coincidences is to build a PET system based on detectors with excellent CRT, since in this case one can impose a very narrow coincidence window. 
+\end{itemize}
+
+
+%In PET, there are three types of coincidence events, as illustrated in Figure \ref{fig.co}. True coincidences (T) are the good coincident photon events where the LOR between the two coincident photons recorded on either side of the system essentially passes through their point of emission. Random coincidences (R) are a source of undesirable background counts that occur when two distinct nuclei each decay nearly at the same time and only one photon from each decay is detected within the system coincidence time window setting. Randoms rates are reduced with lower detected single photon count rates (singles) and a narrower coincidence time window setting. {\it It is desirable to have excellent CRT so that a narrow coincidence time window setting during data acquisition may be employed to reject randoms without compromising photon sensitivity}. Scatter coincidences (S) are another undesirable source of background events that occur when one or both annihilation photons emitted from the same nucleus or single photons emitted from two separate nuclei undergo one or more Compton scatter interactions in the tissue before detection. Since scatter causes a photon to lose energy, its effects may be substantially reduced through the use of a narrow energy window setting around the 511 keV photopeak. Therefore {\it it is also desirable to have excellent energy resolution so that a narrow energy window setting may be employed to reject
+%scattered singles and coincidences without compromising photon sensitivity}.
+ A widely used
+metric, reflecting the signal-to-noise ratio (SNR) performance of PET data in the context of
+the three types of coincidences, is noise equivalent counts (NEC) defined as: 
+%
+\begin{equation}
+NEC = \frac{T^2}{T+S+kR}
+\label{eq.neq}
+\end{equation}
+
+Where T, S, and R are the total number of true, scattered and random coincidences,
+respectively and k is a number between 1 and 2, depending on the phantoms/organs being imaged
+and the random estimation methods being used. A higher NEC at a given injection dose
+implies that a PET system is able to achieve better SNR and contrast-to-noise ratio (CNR)
+performance.
+
+\subsubsection*{Performance of PET scanners}
+
+The main goal of PET studies is to obtain a good quality and detailed image of an object. The critical parameters to achieve that goal are: i) a high photon detection sensitivity; ii) excellent spatial resolution, both in the transverse coordinates with respect to the gammas line of flight and in the coordinate along the gamma line of flight (depth of interaction or DOI) and iii) time of flight information, which requires excellent CRT. 
+
+\subsubsection*{Photon detection sensitivity}
+
+The photon detection sensitivity (often simply referred to as ``the sensitivity'') of a PET scanner is defined as the number of counts per unit time detected by the device for each unit of activity present in a source. It is normally expressed in counts per second per microcurie (or megabecquerel) (cps/$\mu$Ci or cps/kBq). 
+Assuming that dead time is small, sensitivity depends on the 
+{\bf geometric efficiency (E$_g$)}, which defines the solid angle coverage of the detection system, and the {\bf intrinsic coincidence detection efficiency (E$_i$)},
+which is determined by the detector atomic
+number (Z), density, thickness of the detector along the path of the 511 keV gammas crystal, packing fraction, and the detector capability to set narrow windows for time and energy coincidence. The overall system
+photon sensitivity (E$_s$) is is simply the product of E$_g$~and E$_i$:
+
+%
+\begin{equation}
+E_s = E_g \times E_i
+\label{eq.gsensi}
+\end{equation}
+
+The photon sensitivity is often quoted for a
+point positron source placed at the system center. In this particular case, the sensitivity can be expressed by the simple formula:
+
+\begin{equation}
+S = \frac{A \cdot \epsilon^2 \cdot e^{-\mu t} \cdot \xi}{4 \pi r^2} (cps/\mu Ci)
+\label{eq.sensi}
+\end{equation}
+%
+where $\xi = 3.7 \times 10^4$~is a numerical conversion factor, $A$~is the detector area seen by the point source to be imaged, $\epsilon$~is the detector efficiency (e.g., the fraction of the time the detector is alive, which in turn depends on the detector scintillating time and the response of sensors, multiplied by the fraction of events that are relevant for detection, such as photoelectric interactions), $\mu$~is the linear attenuation coefficient of 511 keV photons in the detector material, $t$~is the detector thickness. Notice that the factor $\epsilon^2$~comes from the need to form a coincidence with two detectors with efficiency $\epsilon$. For an extended source at the center of such scanners, it has been shown that the geometric efficiency is approximated as w/2r, where w is the axial width of the detector element and r is the radius of the ring. Thus the sensitivity of a scanner is highest at the center of the axial field-of-view (FOV) and gradually decreases toward the periphery.
+For a standard clinical whole body PET
+system, with 700--800 mm diameter bore, E$_s \sim 1$\%; for a typical
+small animal PET system scanner (100--200 mm diameter bore), E$_s \sim 1-10$\%.
+
+As can be seen in Eq.~\ref{eq.sensi}, the geometrical efficiency E$_g$ depends on the total solid angle of a PET system.  The most straightforward way to extend the solid angle is to increase the system
+coverage along the axial field of view, that is, add new rings to the scanner. Unfortunately the detectors used today for such PET systems are expensive.
+
+Consider for example a torso PET scanner with a diameter of 800 mm, and LSO detectors units of dimensions 5$\times$ 5 $\times $2 cm$^3$. Such units are often block detectors consisting in a matrix of finely segmented crystals read-out by photomultipliers (PMTs), or, more recently, by silicon photomultipliers (SiPMs), as illustrated in Fig.~\ref{fig.detector}. As previously mentioned, the detector thickness is a compromise between the need to stop as many gammas as possible (the number of stopped gammas increases as the thickness increases) and the DOI resolution (which deteriorates as the thickness increases). With a thickness of 20 mm, about 78\% of the 511 keV gammas interact in the crystal, and the resolution in the DOI is  $\sim$ 14 mm FWHM.  
+
+
+A ring of the PET system described above would require 50 detector units, and the cost of each unit (just the LYSO detector, without including the readout and electronics) is about 2,500 \euro. Thus, the detectors to build a single ring cost 125 k\euro. The axial coverage is very modest (5 cm). Typical commercial system feature an axial coverage around 20, thus 4 rings are needed,  adding up to 0.5 M\euro\ just to pay the LYSO detectors. Increasing the axial coverage to ``full torso'' (e.g, 50 cm) would cost 1.25 M\euro\ in LYSO detectors, while the cost of the detectors for a ``full boy'' scanner (e.g., 150 cm) would soar up to 3.75 M\euro\. It follows that, {\em in order to increase axial coverage, and thus geometrical efficiency, the cost of the detector material must be as low as possible}.
+
+There are several ways to increase $E_i$.
+The most straightforward way is to use scintillation
+materials with high Z and density, and thus the success of LSO/LYSO, which features a density of 7.4 g/cm$^3$, and an attenuation length of only 11 mm. Materials of lower Z can in principle be used, provided that the detectors are made thicker. Increasing the length of crystals, however, results, as we have discussed, in a worsening of the DOI resolution and therefore in parallax errors when forming the LORs. In solid scintillators, thicker detectors also result in reduced light signal. 
+
+$E_i$ can also be improved by tight packing of the crystals. In the example that we are discussing, the ideal packing would require to design crystals with the shape of a truncated pyramid. The entry face would have dimensions of $50 \times 50$~mm$^3$, while the exit face would have dimensions of $53 \times 53$~mm$^3$. Unfortunately, manufacturing block detectors with such shapes complicates the fabrication process and increases the cost of the system even further. 
+
+Last, but not least, $E_i$~depends also on the coincidence time, which is typically set to 2 times the CRT, and on the energy window ($\sim 2\times$ energy resolution at 511 keV photopeak). In general, if
+other conditions remain the same, a system that exhibits better energy resolution and time
+resolution will have a larger $E_i$.
+
+To summarize, the requirements to achieve high photon sensitivity are:
+\begin{enumerate}
+\item Large axial coverage, which in turn requires low cost of the detection material per detection unit. 
+\item Detectors with a short attenuation length for 511 keV gammas (which implies high density and hight Z), or, otherwise capable to compensate with increased thickness a longer attenuation length. This requires that the DOI resolution does not degrade too much with thickness. 
+\item Good energy resolution (which in turn requires high light yield) and good CRT (which requires fast scintillation).
+\end{enumerate}
+
+\subsubsection*{Spatial resolution of the PET system}
+
+\begin{figure}[!bthp]
+	\centering
+	\includegraphics[scale=1.0]{img/range.png}
+	\caption{\label{fig.range} Positrons travel a distance before annihilation in the absorber and the distance increases with positron energy. Since positrons with different energies travel in zigzag directions, the effective range is the shortest distance between the nucleus and the direction of 511 keV photons. This effective range degrades the spatial resolution of the PET scanner.}
+\end{figure}
+
+The spatial resolution of a PET scanner is a measure of the ability of the device to faithfully reproduce the image of an object. It is empirically defined as the minimum distance between two points in an image that can be detected by the scanner. A number of factors contribute to the spatial resolution of the whole system.
+\begin{itemize}
+\item {\bf Individual detector resolution}: the scanner spatial resolution depends on the spatial resolution of the individual detectors used to build the system. As already discussed, conventional detectors such as LSO crystals do not measure, in general, the DOI.   
+\item {\bf Positron range}: the emitted positron travels a distance in tissue, losing most of its energy by interaction with atomic electrons and then is annihilated after capturing an electron. Thus, the site of emission differs from the site of annihilation, as shown in Fig.~\ref{fig.range}. The distance (range) traveled by the positron increases with its energy, but decreases with the tissue density. Since the positrons are deflected after interaction with electrons resulting in a zigzag trajectory, the positron range is essentially an effective range, which is given by the shortest (perpendicular) distance from the emitting nucleus to the positron annihilation line. Furthermore, positrons are emitted with a distribution of energy, which also affects the effective range. The effective positron ranges in water for \ensuremath{^{18}}F is 2.2 mm. Since coincidence detection is related to the location of annihilation and not to the location of the positron emission, an error  occurs in the localization of true position of the positron emission thus resulting in the degradation of spatial resolution. However, this contribution to the spatial resolution is small, of the order of 0.2 mm for \ensuremath{^{18}}F.
+\item {\bf Noncollinearity}: another factor of concern is the noncollinearity that arises from the deviation of the two annihilation photons from the fact that the two 511 keV photons are not emitted at exactly 180$^\circ$ after the annihilation process because of some small residual momentum of the positron at the end of the positron range. The maximum deviation from the 180$^\circ$ direction is $\pm 0.25^\circ$. Thus, the observed LOR between the two detectors does not intersect the point of annihilation, but is somewhat displaced from it. This error  degrades the spatial resolution of the scanner and deteriorates with the distance between the two detectors that register the photons. The contribution from noncollinearity worsens with larger diameters of the ring, and it amounts to 1.8--2 mm for currently available 80--90 cm PET scanners.
+\end{itemize}
+
+A relevant fact to take into account when designing a PET scanner is the intrinsic limitation introduced by the noncollinearity effect, which in turn sets the scale for the detector resolution. Since errors add quadratically, a detector resolution much smaller than the resolution introduced by noncollinearity does not bring any substantial benefit to the system. Thus, while small 10--20 cm scanners such as small animal PETs can aim for detector sub-mm resolution, the detector resolution of a large system does not need to be much better than 1--2 mm. 
+
+\subsubsection*{Time of flight (TOF) application in a PET scanner}
+
+\begin{figure}[!bthp]
+	\centering
+	\includegraphics[scale=1.0]{img/MAPD_tofprinciple.jpg}
+	\caption{\label{fig.tof} Time of flight (TOF) principle in a PET detector.}
+\end{figure}
+
+A Time-of-flight (TOF) PET scanner takes advantage of the difference in arrival times of two photons from the same annihilation event to infer spatial information of this event. 
+
+To understand the principle of TOF applied to PET is important to recall that light in vacuum travels 30 cm in 1 ns. Consider the situation illustrated in Fig.~\ref{fig.tof}. In principle one can measure the point of emission along the LOR by taking the time of flight difference between the arrival of the two photons. Since:
+\begin{equation}
+\Delta t = \Delta t_2 - \Delta t_1 = \frac{2 \Delta d}{c}
+\end{equation}
+%
+and $c$ = 30 cm/ns, it follows that the displacement from the mid point
+$\Delta d$ is related with the TOF difference between the two photons $\Delta t$ and the speed of light $c$ as:
+
+\begin{equation}
+\Delta d =c \frac{2 \Delta t}{2}
+\end{equation}
+
+Thus, if one is able to measure $\Delta t$~ to a resolution of 500 ps (corresponding to the
+best time resolution achieved by current commercial systems), the resulting precision in the
+determination of $\Delta x$~is 7.5 cm, to be compared with the typical resolution achieved by
+conventional PET, which is of the order of a few mm. A $\Delta t$~resolution of 25 ps would yield a resolution of better than 4 mm, competitive with that achieved in conventional PET scanner, and therefore TOF could be used to determine directly the emission point. 
+
+\begin{figure}[!bhtp]
+	\centering
+	\includegraphics[scale=0.6]{img/tileshop.jpg}
+	\caption{\label{fig.tile} (A) Emission point at a distance d from the center of the scanner within an object of diameter D. The two 511 keV photons are detected in coincidence at times t1 and t2. (B) Without precise TOF measurement a uniform probability along the LOR within the object is assumed for each emission point, leading to noise correlations over a portion of image space between the two events as shown in (B). (C) With TOF information the position of the emission point is localized along the LOR with a precision that is defined by a Gaussian distribution of width $\Delta x$. (D) Better localization of the two emission events along their individual LORs leads to reduced noise correlation of the events in image space image reconstruction. }
+\end{figure}
+
+In a TOF-PET scanner one uses good time-of-flight resolution to reduce the number of random coincidences, as illustrated in Figure \ref{fig.tile}. The principle is as follows. In a conventional PET without TOF one does not localize the emission point along the LOR. By collecting all possible LORs around the object (full angular coverage) and assuming uniform probability of the emission points lying along the full length of the LORs (and within object boundary), it is mathematically possible to reconstruct the emission object accurately (Fig.~\ref{fig.tile}, panels A and B). The knowledge of the emission point locations along the LORs is not necessary to reconstruct the emission object. However, by assuming uniform probability of event location along the full LOR length, noise from different emission events gets forward and back projected during image reconstruction over many image voxels leading to increased noise correlation. Hence, the image signal-to-noise ratio (SNR) gets reduced.
+
+In TOF-PET the difference in the arrival times $(t_2 - t_1)$ of the two photons is measured with a precision $\Delta t$~(called coincidence resolving time, CRT) that helps localize the emission point along the LOR within a small region of the object, as illustrated in  Fig.~\ref{fig.tile}, panel C. The uncertainty in this localization is determined by the CRT. The corresponding uncertainty in spatial localization $\Delta x$~ along the LOR is given by 
+$\Delta x=c \times \Delta t/2$. As previously noted, if $\Delta x$~ is the same or smaller then the detector spatial resolution then in principle image reconstruction is not needed. Typically this spatial localization, however, is more than one order of magnitude worse than the detector spatial resolution, and hence image reconstruction is still necessary to produce tomographic images. However, during reconstruction, noise from different events is now forward and back projected over only a limited number of image voxels as defined by the spatial uncertainty, leading to reduced noise correlations and improved image signal-to-noise resolution  as illustrated in  Fig.~\ref{fig.tile}, panel D.
+
+
+\begin{figure}[!bhtp]
+	\centering
+	\includegraphics[scale=0.5]{img/SensiTof.png}
+	\caption{\label{fig.sensi} Gain in sensitivity (defined in the text) as defined by $D/\Delta x$ plotted as a function of timing resolution for cylindrical ``phantoms'' with three different diameters.}
+\end{figure}
+
+With the knowledge that during the forward and back projection steps in image reconstruction noise will be spread over fewer voxels along the LOR (defined by $\Delta x$), it has been  shown  that the effective gain in sensitivity at the center of a uniform cylinder due to TOF information is given by $D/\Delta x$\footcite{snyder, budinger}. Fig.~\ref{fig.sensi} shows a plot of this gain in sensitivity plotted as a function of timing resolution and for varying object sizes. As the object size increases or timing resolution improves, the gain due to TOF-PET increases. 
+
+Consider as an example that one is performing a torso scan, ($D \sim 30$~cm). A PET capable of a CRT of 200 ps will result in $\Delta x = 3$~ cm and thus the gain in sensitivity may be as high as $30/3 = 10$). 
+  
+It follows that a PET scanner capable of a CRT in the range of 100 ps can improve the sensitivity by roughly a factor 10 w.r.t. a conventional PET with no TOF measurement. 
+
+
+\subsubsection*{Summary: main requirements for a PET scanner}
+
+From the discussion above we can conclude that the 
+main requirements for a PET scanner are: 
+
+\begin{enumerate}
+\item {\bf Dense detectors}, with high stopping power for 511 keV gammas.
+\item {\bf Spatial resolution of sub mm to few mm}, depending on the application (small animal PET requires sub mm resolution while full body PET can be done with a resolution of few mm).
+\item {\bf Energy resolution as good as possible}, to eliminate Compton coincidences.
+\item {\bf High count rate capability ($\sim10^6$ s$^{-1}$ cm$^{-2}$~ of detecting surface)}, which results in minimizing scan times and/or doses.
+\item {\bf Fast scintillating time}, which allows narrow CRT and TOF applications. 
+\item {\bf Large angular acceptance}, for torso, ``full body PET'', which in turn requires a large axial (along the patient's body) coverage. This requires cheap detection systems. 
+\end{enumerate}
+
+
+\subsubsection*{Liquid xenon as detection material}
+
+
+
+\begin{figure}[!bhtp]
+	\centering
+	\includegraphics[scale=0.5]{img/XeLight.pdf}
+	\caption{\label{fig.xe} Signals in xenon.}
+\end{figure}
+
+Xenon is a noble gas. It responds to the interaction of ionizing radiation providing both ionization and scintillation signals. The ionization signal is due to atomic electrons ejected from the xenon atoms by the incoming radiation, which take a long time to recombine due to the noble-gas nature of xenon (and therefore can be drifted to a collection electrode, if so desired). The scintillation signal is due to the de-excitation of xenon atoms forming dimers which decay after 2.2 ns (single mode) or 27 ns (triplet mode) emitting ultraviolet light (VUV) of 178 nm wavelength (Fig.~\ref{fig.xe}).
+
+In its liquid phase (at a temperature of 165 K and atmospheric pressure) LXe has a reasonable high density (3 g/cm$^3$) and an acceptable attenuation length (30 mm), which makes it suitable for PET applications, in particular given the fact that one can compensate for the relatively large attenuation length by building thicker detectors while at the same time keeping an excellent resolution in the determination of the DOI. Compare with LSO, LXe offers:
+\begin{enumerate}
+\item A very high yield (60 photons per keV or about 30,000 photons for a 511 keV gamma), twice as large as that of LSO. Such a high yield translates into a small resolution error due to photon statistics which contributes to a good energy resolution, of the same order of that measured in LSO crystals, as discussed later. The high yield also contributes to a good spatial resolution (of the order of 2 mm FWHM) with a more spare instrumentation than that needed in LSO. Last but not least, a considerable fraction of the emitted photons (of the order of 6,000) decay with a fast constant of 2.2 ns, making possible an excellent CRT and therefore a PET-TOF application. 
+\item LXe is a continuous medium with uniform response. The design of a compact system is much simpler, then, than when using solid detectors of fixed shape. It is also possible to provide a 3D measurement of the interaction point, and thus a high resolution measurement of the DOI. Furthermore, in LXe it is possible to identify Compton events depositing all its energy in the detector as separate-site interaction, due to the relatively large interaction length in xenon. This increases the sensitivity of the system, since those events can, in principle, be used for image reconstruction. 
+\item The refraction index of LXe is 1.55 for VUV light and 1.4 for blue light, to be compared with 1.8 for LSO. The lower refraction index increases the acceptance of the sensors (it is much better matched to the entry window of the SiPMs) and introduces a smaller correction in the determination of the photoelectrons time stamp. 
+\item The temperature of LXe at atmospheric pressure (160 K or -113 C) is hot enough as to permit a simple cryostat, as well as normal operation of the SiPMs and the ASIC electronics, but cold enough to reduce the dark current rate (DCR) of the SiPMs by a factor $\sim 2^{13}$, thus making it essentially negligible. 
+\item The cost of LXe is 20\% of the cost of LSO per detector unit. 
+ \end{enumerate}
+
+The first idea of using a LXeTPC for PET was proposed in 1993 by Chepel\footcite{chepelFirst}. 
+%The proposed detector was a LXe multi-wire detector consisting of six ionisation cells, each formed by two parallel cathode plates with a multi-wire anode in the middle. 
+%Subsequent R\&D is documented in \footnote{{\em Chepel, V. Y. et al.}, 1995, Nucl. Instrum. Methods A
+%367, 58; {\em Chepel, V. Y. et al.}, 1994, Nucl. Instrum. Methods
+%A349, 500; {\em Chepel, V. Y. et al.}, 1997, Nucl. Instrum. Methods A392, 427; {\em Chepel, V. Y. et al., 1999, IEEE Trans NS-46, 1038}; {\em Crespo, P. et al.}, 1998, IEEE Trans. NS-45, 56; {\em Crespo, P. et al.}, 2000, IEEE Trans, NS-47, 2119; {\em Lopes, M. I. et al.}, 1995, IEEE Trans. NS-42, 2298.; {\em Thers D.}, ``A Positron Emission Tomograph (PET)
+%based on a liquid Xenon Time Projection Chamber and Microstructure Devices for Compton tracking'', in Workshop on LXe-PET Camera, Subatech, Nantes, France, October 2003; }. 
+%{\bf All those devices were based in the exploration of the ionisation signal in LXe}. {\em However, the measurement of such signals introduces a severe constrain to the technique, given the slow drift time of electrons in LXe} (typically of the order of 2 mm/$\mu$s, for a drifting field of 
+%1 KV/cm). Since $\lambda = 3$.6~cm the practical length of a LXe cell (along the photon line of flight) must be of 5 cm to contain 80 \% of the photons. This, in turn, implies drifting times of 25 $\mu$s, which limits the interaction rate that can be recorded by the cell to  
+%$\sim10^5 s^{-1}$, and therefore imposes a low-rate PET with a limited range of applications. 
+%
+The possibility of building a LXe PET (with TOF capabilities) based on the excellent properties of LXe as scintillator, was first suggested by Lavoie in 1976\footcite{lavoie}, and the study of this type of PET was carried out by the Waseda group \footcite{Doke1,Nishikido2,Nishikido1}. The Waseda prototype was based in LXe cells read out by VUV-sensitive PMTs. In those cells one of the sides was left instrumented. The relatively poor performance of the system can be attributed in part to the use of PMTs and in part to the partial lack of instrumentation which affected both the energy and the time resolution. In spite of this limitations 
+%The PMTs, although sensitive to the VUV light emitted by xenon had low quantum efficiencies (in the range 5-25 \%), and their rather large size compared with the size of the cell ($18\times 18$~mm$^2$) introduced significant geometrical effects which were difficult to correct. As a result of the above effects combined the energy resolution was of the same order than that of conventional SSDs. The space resolution was rather good, in the range of 2-3 mm, but only in the central volume of the cell (a cube of 5 mm size), and deteriorated rapidly in the borders, due to the space corrections introduced by the (relatively) large PMTs. 
+the CRT achieved in the central volume of the prototype was excellent, of the order of 260 ps, showing the enormous potential of the technology for PET application. 
+
+\subsubsection*{The LXSC}
+
+Recently, a new type of PET device called PETALO has been proposed\footnote{Liquid Xenon Scintillating Cell, patent number P201531239 August 31st, 2015 presented to OPEM (MINECO), CSIC/UV, inventor J.J. G\'omez-Cadenas.}, which, like the Waseda apparatus, uses the intense LXe scintillation light as the unique source of signal. However, PETALO is based in a new type of detection cell  the so-called Liquid Xenon Scintillating Cell (LXSC). The key idea is the capability of the LXSC to capture with high efficiency, minimal geometrical distortions and uniform response, most of the light produced by the scintillation of xenon, a condition \emph{sine qua non} to achieve good energy and space resolution. 
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.6]{img/LXSC2.pdf}
+	\caption{\label{fig.box} The Liquid Xenon Scintillating Cell (LXSC) instruments the entry and exit faces of the box (relative to the photon line of flight) with silicon photomultipliers (SiPMs), coated with a wavelength shifter, tetraphenyl butadiene (TPB). The non-instrumented faces are covered by reflecting teflon coated with TPB. The shape of the LXSC can be adapted to the application. }
+\end{figure}
+
+A drawing of the LXSC is shown in Fig.~\ref{fig.box}. In its simpler version is a box in which 
+the entry and exit faces (relative to the photon line of flight) are instrumented with silicon photomultipliers (SiPMs), while the rest of the faces are covered with a highly reflective material such as teflon. The shape and the dimensions of the box itself can be adapted to the application. 
+
+The original design of the LXSC proposed to coat both the SiPMs and the teflon with a 
+wavelength shifter, tetraphenyl butiadene (TPB). The VUV light (172 nm) emitted by the LXe is shifted to wavelengths around 430 nm when it hits the teflon panels, which on the other hand, reflect light in that range with almost 100\% efficiency. Furthermore, TPB does not absorb blue light above 400 nm, therefore minimizing loses. If the VUV hits the SiPMs themselves is also shifted to 430 nm, which is the region of maximum PDE of the devices. 
+
+The original design of the LXSC also proposed the  
+use of large area SiPMs as readout devices, to minimize the number of channels and thus reduce costs. Currently, several manufacturers offer SiPMs of large area, high gain, low dark current and very low noise which can operate at liquid xenon temperatures with excellent performance.
+
+An initial study of the expected performance of the LXSC regarding energy and spatial resolution, in which the PI of this project has participated,  has been conducted using Monte Carlo simulation\footnote{J.M. Benlloch Rodriguez, {\bf PETALO, a new concept for a Positron Emission TOF apparatus based on liquid Xenon}, Master thesis, University of Valencia, September, 2015.}. The results obtained are very promising but need to be demonstrated experimentally. 
+\\
+
+
+
+

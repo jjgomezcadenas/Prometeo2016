@@ -1,0 +1,23 @@
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/FullRing1}
+	\caption{Possible geometry of a full ring PET based on the PETALO concept.}\label{fig.design}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/OneModule}
+	\caption{One single module of the full ring, instrumented with SiPMs.}\label{fig.oneCell}
+\end{figure}
+%
+Once the two-cell system has been characterised, an evaluation of the sensitivity of a full ring, as defined in Eq.~\ref{eq.sensi},  will be performed, through Monte Carlo simulation.
+A Monte Carlo simulation of the full system will be carried out using the Geant4 package \footcite{Agostinelli:2002hh, Allison:2006ve}. The detailed design of the cell will be driven by the previous specific studies of the project. As an illustration, Fig.~\ref{fig.design} shows a possible configuration of a full ring PET scanner of 24 cm inner diameter and 20 cells. In this configuration, the entry and exit faces of each cell have an area of 3.8$\times$3.8 cm$^2$ and 5.4$\times$ 5.4 cm$^2$ respectively, while the radial size of the cell is 5 cm. A single cell is depicted in Fig.~\ref{fig.oneCell}: both the entry and exit faces are instrumented with squared SiPMs, TPB coated, in order to shift photons to wavelengths that maximise the SiPM PDE, around 430 nm. The other faces of the trapezoidal cells are also coated with TPB, in order to maximise light reflection on the walls.
+
+A beta emitter source will be simulated, taking into account the non-collinearity of the annihilation gammas, as well as the propagation and the interaction of the annihilation gammas in the cells. The scintillation optical photons created in the interactions will be generated according to the scintillation yield measured in the first part of this project and propagated until they are detected by a SiPM or are absorbed in some element of the cells. The response of the SiPMs will be registered and a successive simulation of the electronics effects and gain fluctuations will be applied in order to obtain a realistic waveform for each of the SiPMs.
+
+Coincidence events will be selected measuring the energy collected by all the SiPMs, once it is corrected for geometrical effects, using the information on the position of the interactions. Events with energies in both cells in a range centred in  511 keV will be kept. In LXe around 20\% of the contained events are pure photoelectric, thus have one interaction point. In this case, its position in the transverse plane will be calculated using the charge-weighted average of the SiPM positions of the closest instrumented face. For the radial position, a ratio of the charge detected by the two planes will be used. For events with one or more Compton scatterings, the positions of all the interaction points will be reconstructed using more sophisticated techniques, such as neural networks and Compton reconstruction algorithms will be developed in order to determine the most probable path among all the possible sequences and identify the most likely first interaction points.
+
+Once the position of the first interaction will have been identified, a line of response (LOR) will be defined. All the LORs of an events will be stored to be used in the image reconstruction, which will be performed through a list-mode reconstruction method based in the maximum likelihood expectation maximisation approach.
+
+Simulations will be performed both with a point-like source and with specialised phantoms.
+\\

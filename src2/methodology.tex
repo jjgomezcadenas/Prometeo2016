@@ -1,0 +1,118 @@
+
+\noindent\textbf{C.1.4 Methodology}
+
+\subsubsection*{Experimental setup}
+The measurements described in the specific objectives 1-3 require the construction of an experimental setup consisting of two LXSC cells housed inside individual small cryostats. For timing measurements, the cells will be placed facing each other, at a distance of about 1 cm. A \ensuremath{^{22}}Na source will be placed in the middle. The 511 keV gammas emitted by the source will enter the cells through thin mylar windows. 
+
+Each cell has dimensions $20 \times 20 \times 20 {\rm ~mm^3}$. The entry and exit faces of the cells (relative to the gammas line of flight) will be instrumented with an array of $4 \times 4$~SiPMs (thus 16 per face and 32 per cell). The SiPMs will be VUV sensitive (PDE $\sim$ 20 \%), and their active area will be $3 \times 3{\rm ~mm^2}$. They will be placed at a pitch of 5 mm. The other 4 faces will be covered with teflon.
+
+The 64 SiPMs of the two cells will be read with a dedicated ASIC. In particular we will use the 
+TOFPET2 ASIC from PETSYS\footnote{\url{http://www.petsyselectronics.com/web/website/docs/products/product1/Flyer\%20ASIC\%20TOFPETv2.pdf}}. This is a  new chip, with 64 channels, specifically designed for TOF applications. The essential feature of TOFPET2 is its very low intrinsic time resolution (25 ps).  Its main features include:
+
+\begin{itemize}
+\item Signal amplification and discrimination for each of 64 independent channels. 
+\item Dual branch quad-buffered analogue interpolation TDCs for each channel. The first
+branch is used for timing measurement. The second branch can either be used for
+time-over-threshold (ToT) or charge measurement (ADC).
+\item Quad-buffered charge integration for each channel.
+\item TDC time binning of up to 25 ps. 
+\item  Configurable timing and trigger thresholds.
+\end{itemize}
+
+\subsubsection*{Yield, energy resolution and spatial resolution}
+The first round of measurements will be the total yield of 511 keV gammas in LXe, and the energy resolution and spatial resolution of the LXSC. 
+
+The absolute yield and energy resolution will be computed by adding the signals recorded by all the SiPMs. Denoting by N$_g$ the total number of scintillation photons and by N$_{pes}$~ the total number of photoelectrons recorded in the event, we can write:
+
+\begin{equation}
+N_{pes} = N_g \times F \times PDE
+\label{eq.pes}
+\end{equation}
+%
+where $F$~is the geometrical efficiency (transport function) for a photon to hit the active surface of a SiPM and $PDE$~is the photon detection efficiency of the SiPM. $F$~will be computed by a detailed Monte Carlo calculation, while we will measure at IFIC the $PDE$~of each individual SiPM entering the setup. 
+
+The total yield (N$_g$) will be obtained from Eq.~\ref{eq.pes}. The energy resolution will be obtained by fitting the 511 keV photoelectric peak. 
+
+The spatial resolution in (x,y) will be computed by imaging the source through a collimator located at well defined positions. The resolution in the DOI can be computed by comparing the ratio of the energy deposited in the entry and exit faces with the corresponding ratio obtained by a precise Monte Carlos simulation of the setup. 
+
+\subsubsection*{Measurement of the amplitudes and decay time constants in LXe}
+
+The slow decay constant in xenon (45 ns) is attributed to the slow recombination of electrons and has been observed to disappear when an electric field of about 1 kV/cm is applied to the gas, leaving only the two decay constants associated to the pure scintillation process. Relative measurements of the yield with and without electric field give the ratio between pure scintillation and ionization. With an electric field, a fit to the slope of the time stamp of the recorded photoelectrons will give the relative ratio of the singlet-fast scintillation with respect to the triplet-slow scintillation and the absolute values of the decay constants. Without an electric field, a fit to the slope of the time stamp of the recorded photoelectrons will give a good estimation of the slow constant.
+
+To carry on this measurement, one of the LXSC cells of the prototype will be upgraded, adding three meshes of at least 90\% transparency. One mesh (the cathode) will be placed in the center of the cell, and the other two will be placed in front of the SiPM planes (the anodes). The cathode will be at 2 kV, while the two anodes (and the SiPMs) will be grounded. Switching the electric field on and off one can measure the amplitude and time constant of the combined effect (ionization plus scintillation if the field is off), and the amplitude and time constant of pure scintillation (field on). Those measurements are critical to determine the amplitude of the fast decay mode, which dominates the CRT.  
+
+\subsubsection*{Measurement of the CRT of the LXSC}
+The measurement of the CRT in our setup is simplified by the use of the TOFPET2 ASIC, which allows a very low trigger threshold (about 0.5 p.e.), so that the system can extract the time stamp of the first photoelectron. All the SiPMs of the two cells are connected to a single ASIC, and thus share a common clock with fine time bins (25 ps). The simplest approach is to set a trigger in the first photoelectron recorded in each box and compute the CRT from their respective time stamps. However, the time jitter of the SiPM may be reduced by adding more photoelectrons to the trigger. The measurements will be tuned, changing the (programmable) trigger threshold, until the best CRT is obtained. 
+\\
+
+\noindent\textbf{C.1.5 Means, infrastructure and singular equipment}
+
+In order to carry out this project, the research will fully benefit from the extensive infrastructures available at IFIC. The project will be developed in the NEXT laboratory, and fully profit from the NEXT and IFIC electronics and mechanics workshops. Gas system, vacuum pumps, small electronics components and electronics equipment will be available from the NEXT equipment, as well as the computers needed for the DAQ (which will use the same protocol used by NEXT).  Moreover, xenon already available from the NEXT prototype will be used.
+
+Furthermore, 
+the researcher will be able to use the help of a mechanical engineer and two electronic engineers, payed by IFIC. The engineers have been part of the NEXT team and have recently obtained 3 year positions in the technical division of IFIC. The participation of the engineers in this project has been agreed with the NEXT PI. They will provide essential technical support for the construction of the experimental setup. In particular, the mechanical engineer will design and coordinate the construction of the small cryostats (which will be manufactured by a specialized company, most likely AVS/Scientifica\footnote{\url{http://www.a-v-s.es/technology-driven-markets/new-ventures/scientifica/}}), and will help with the installation of the gas recirculation system (which will be reused from NEXT equipment). The electronics engineer will take care of acquiring, testing and deploying the PETTOF ASIC, as well as of the system DAQ and the (simple) slow controls. The researcher will also work closely with a graduate student (Jos\'e Mar\'ia Benlloch Rodr\'iguez). The researcher and Benlloch have worked together in the development of the initial calculations to show the performance of PETALO. 
+
+A modest budget is requested for the construction of the experimental setup. This includes:
+
+\begin{enumerate}
+\item Mechanics of the setup including the small cryostats (10 k\euro) as well as vacuum and cryogenic equipment ( 5k\euro). 
+\item 100 units of VUV sensitive SiPMs. The cost of one unit is 50 \euro\ . We would like to purchase 100 units (5k\euro).
+\item An ASIC evaluation kit from PETSYS, which includes the ASIC, front-end board, mother board providing power and biasing and a XilinX FPGA board (10 k\euro).
+\item Small equipment (personal computer, lab equipment):  10 k\euro .  
+\item Travel, needed to attend meetings with collaborators and at least two conferences in three years. We estimate 10 k\euro.
+ \end{enumerate}
+ 
+ In Table~\ref{tab.box}, a summary of the requested budget is presented.
+ %
+ \begin{table}[htdp!]\centering
+\begin{tabular}{cc}
+%\hline
+\toprule
+\textbf{Item} & \textbf{cost (k\euro)} \\
+\midrule
+Mechanics & 15 \\
+SiPMs &	5 \\
+ASIC &	10 \\
+Small equipment & 10 \\
+Travel & 10 \\
+\hline
+Total	 & 50 \\
+%\hline\hline
+\bottomrule
+\end{tabular}
+\caption{Requested budget.}
+\label{tab.box}
+\end{table}%
+
+
+\noindent\textbf{C.1.6 Timeline of the project}
+
+\begin{table*}[!htb]\centering
+\ra{1.3}
+\begin{tabular}{@{}l|cccc@{}}\toprule
+\textbf{Task} & \multicolumn{2}{c}{\textbf{2016}} & \textbf{2017}  & \textbf{2018} \\
+& S1 & S2 & & &  \midrule
+Simulation of the prototype & X & X & & \\
+Optimisation and test of reconstruction algorithms & X& X &  &  \\
+Design and construction of the prototype & X &  & & \\
+Commissioning  & & X &  & \\
+Detector operation and data analysis &  &  & X &  \\
+Full ring sensitivity studies & &  & & X \\
+ \bottomrule
+\end{tabular}
+\caption{Timeline of the project. S1 and S2 indicates the first and second semester of the year, respectively.}\label{timeline}
+\end{table*}
+
+The timeline of this project is shown in Table \ref{timeline}. The first year (2016) will be devoted to the design and construction of the prototype (6 months), and its ulterior commissioning, including the ASIC based DAQ (6 months). The setup will also be fully simulated. At the end of the first year, the setup should be fully operational, with data from Na-22 interactions being recorded in both cells, and the output from each individual SiPM being digitized, including both the amplitude and the time stamp. The reconstruction and analysis programs will also be ready.
+
+During the second year, the researcher and JMBR will conduct the experiments described in previous sections. The goal of the second year is to provide a full set of new results regarding the use of LXe for PET, including: absolute yield for 511 keV, amplitude and time constants for ionization and primary scintillation (singlet and triplet), energy resolution, spatial resolution and CRT. The research expects at least 3 publications in a high-impact instrumentation journal, such as JINST. 
+
+The results obtained experimentally will permit the researcher to propose optimal configurations for different PETALO setups. For example, a low-cost, full-body scanner, may be based in large LXSC, with sparse instrumentation and using conventional SiPMs (blue sensitive) coated with TPB, to optimize costs, while still keeping a competitive performance. Instead, a brain insert for neuroimaging can put the emphasis in dense instrumentation, and optimized spatial resolution and CRT to maximize sensitivity. 
+
+During the third year, the researcher will conduct a quantitative study of the performance of the PETALO configurations described above. She will write a full Monte Carlo simulation of the full system(s), and will use the simulated data to characterize, using standard techniques (e.g, NEMA standard phantoms) the performance of the devices. 
+
+The research project proposed here is fully independent of the Prof. J. D\'iaz proposal submitted to the RETOS-2015 call. However, if this proposal is approved and funded, the researcher will also participate in its development. In particular, the researcher will use her extensive experience with Monte Carlo simulations using Geant4\footcite{Agostinelli:2002hh} to write the simulation code and will contribute to operation and data analysis. 
+
+In addition, the experimental setup proposed by the researcher will be extremely useful for the prototype of Prof. J. D\'iaz proposal submitted to the RETOS-2015. Its baseline design contemplates the use of COTS (off-the-shelf) discreet electronics which is much more expensive than the state-of-the-art ASIC solution identified by the researcher. Furthermore, the time jitter introduced by synchronizing protocol in the cells will very likely be much higher than when using ASICs with common clocks and fine-grained time bins. After demonstrating excellent performance in her experimental setup, the researcher will propose that the electronics of the Prof. J. D\'iaz project is also based in the TOFPET chip and will lead the CRT measurements. 
+\\
+
