@@ -16,11 +16,13 @@
 \usepackage{hyperref}
 %% Added to help mimic structure.
 \usepackage{tcolorbox}
+\tcbuselibrary{breakable}
 \usepackage{soul}
 \usepackage{color}
 \usepackage{multirow}
 \usepackage{xcolor,colortbl}
 \usepackage{tabularx}
+\usepackage{tikz}
 
 \setlength{\headheight}{1cm}
 \setlength{\headsep}{0.5cm}
@@ -45,6 +47,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\thesection{\bf \textsf{\alph{section}}}
+
+%% Special box for figures.
+\newtcbox[auto counter]{\figbox}[2][]{
+  colback=white,colframe=gray,colbacktitle=white,coltitle=black,title=Figure~\thetcbcounter: #2,#1
+}
 
 \begin{document}
 \input{src/commands.tex}
@@ -82,19 +89,19 @@ RESUM DEL PROJECTE / RESUMEN DEL PROYECTO & \\
 
 \newpage
 
-%\begin{tcolorbox}[colback=white,coltitle=black,arc=0pt,outer arc=0pt,colframe=black,boxrule=0.6pt,boxsep=0pt,left=0pt,top=0pt,right=0pt]
-%
-%\begin{tabularx}{\textwidth}{X}
-%\\
-%\\
-%\\
-%\\
-%\\
-%\hline
-%\end{tabularx}
-%
-%
-%\end{tcolorbox}
+\begin{tcolorbox}[breakable,colback=white,coltitle=black,arc=0pt,outer arc=0pt,colframe=black,boxrule=0.6pt,boxsep=0pt,left=0pt,top=0pt,right=0pt]
+
+\begin{tabularx}{\textwidth}{X}
+\\
+\\
+\\
+\\
+\\
+\hline
+\end{tabularx}
+
+
+
 {\bf
 Mem\`oria cientificot\`ecnica i pressupost del projecte d’investigació per a tota la durada del projecte, distribu\"it per anualitats. \\ Memoria cient\'ifico-t\'ecnica del proyecto de investigaci\'on para toda la duraci\'on del proyecto, distribuido por anualidades.
 }
@@ -108,8 +115,11 @@ Mem\`oria cientificot\`ecnica i pressupost del projecte d’investigació per a 
 
 \input{src/Petalo.tex}
 
+\end{tcolorbox}
+
 \newpage
 
+\begin{tcolorbox}[breakable,colback=white,coltitle=black,arc=0pt,outer arc=0pt,colframe=black,boxrule=0.6pt,boxsep=0pt,left=0pt,top=0pt,right=0pt]
 {\bf
 Justificació del pressupost del projecte d’investigació, per a tota la durada del projecte, distribuït per anualitats
 Justificación del presupuesto del proyecto de investigación, para toda la duración del proyecto, distribuido por anualidades
@@ -117,9 +127,18 @@ Justificación del presupuesto del proyecto de investigación, para toda la dura
 
 \input{src/Presupuesto.tex}
 
-Membres de l'equip de treball i tasques a desenrotllar 
-Miembros del equipo de trabajo y tareas  a desarrollar 
+\end{tcolorbox}
+
+\newpage
+
+\begin{tcolorbox}[breakable,colback=white,coltitle=black,arc=0pt,outer
+  arc=0pt,colframe=black,boxrule=0.6pt,boxsep=0pt,left=0pt,top=0pt,right=0pt]
+
+{\bf Membres de l'equip de treball i tasques a desenrotllar 
+Miembros del equipo de trabajo y tareas  a desarrollar }
 
 \input{src/Equipo.tex}
+
+\end{tcolorbox}
 
 \end{document}

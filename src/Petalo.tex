@@ -4,11 +4,13 @@
  Una de las aplicaciones más importantes de la tecnología de detectores de física nuclear y de partículas a la imagen médica son los llamados aparatos PET, de las siglas en inglés Tomografía de Emisión de Positrones. Su principio de operación se basa en inyectar en el paciente un radiofármaco emisor de positrones, tal como la Fluordesoxiglucosa (18FDG), un azúcar radioactivo en el que un átomo de oxígeno se sustituye por uno de fluor-18 (\ensuremath{^{18}}F). El 18FDG se concentra en aquellas zonas del paciente que consumen elevadas cantidades de glucosa y por lo tanto puede actuar como trazador de procesos oncológicos (ya que las células tumorales son ávidas consumidoras de glucosa) así como de zonas del organismo con gran actividad metabólica, tales como el cerebro. El \ensuremath{^{18}}F se desintegra emitiendo un positrón, el cual se aniquila, tras un corto recorrido, con un electrón del tejido del paciente produciendo dos fotones de 511 kilo electrón voltios (keV) que se emiten en direcciones opuestas. 
 
 
-\begin{figure}
-\centering
+%\begin{figure}
+%\centering
+\begin{center} \figbox[label={fig.PET}]{{\small Principio de operación del PET.}}{
 \includegraphics[width=0.6\textwidth]{img/PET.jpg}
-\caption{\small Principio de operación del PET.} \label{fig.PET}
-\end{figure} 
+%\caption{\small Principio de operación del PET.}
+%\label{fig.PET}
+} \end{center} 
 
 
 Un PET clínico se construye a partir de varios anillos de detectores que rodean una determinada zona del cuerpo del paciente. Los fotones de 511 keV interaccionan con los detectores que forman el anillo, depositando su energía en ellos. Los detectores reconstruyen tanto la energía de los fotones originales como su punto de impacto. Puesto que los fotones se emiten en direcciones opuestas, cuando un par de detectores enfrentado entre sí en el anillo detectan interacciones simultáneas (dentro de la resolución temporal del sistema), pueden utilizarse los dos puntos de impacto reconstruidos para trazar una línea recta (o LOR, de las siglas en inglés de Línea de Respuesta) que pasa por el punto donde se aniquila el positrón con el electrón (el cual a su vez está muy próximo al punto de emisión del positrón). La intersección de muchas de estas LOR permite la reconstrucción funcional de la imagen (esto es, la reconstrucción de la zona en términos de su actividad metabólica), tal como se ilustra en la Figura \ref{fig.PET}.
@@ -27,11 +29,13 @@ No obstante, las propiedades físicas del LXe le permiten competir con ventaja c
 
 La segunda característica de interés del LXe es su bajo coste, del orden de un factor 5 inferior (por unidad de detección) al LSYO. Esto permite la posibilidad de construir un PET que conjunte una sensibilidad muy superior a los modelos convencionales (gracias a la aplicación TOF) con un coste sensiblemente inferior. 
 
-\begin{figure}
-\centering
+%\begin{figure}
+%\centering
+\begin{center} \figbox[label={fig.BOX}]{{\small Diseño de la LXSC.}}{
 \includegraphics[width=0.6\textwidth]{img/LXSC2.pdf}
-\caption{\small Diseño de la LXSC.} \label{fig.BOX}
-\end{figure} 
+%\caption{\small Diseño de la LXSC.}
+%\label{fig.BOX}
+} \end{center} 
 
 Por otra parte, la propuesta, la celda centelladora de xenón líquido (LXSC)\footnote{Celda centelleadora de LXe, patente número P201531239 presentada en 31 agosto 2015 ante la OPEM (MINECO), CSIC/UV, inventor J.J. Gómez-Cadenas.} resuelve los problemas tecnológicos encontrados por los pioneros de esta técnica, tales como el grupo de Waseda. El modelo estándar de LXSC es una caja de $5\times 5 \times 5$~ cm$^3$ (las dimensiones y la forma pueden variar dependiendo de la aplicación) rellena de LXe (Figura \ref{fig.BOX}). Cuatro de las 6 superficies internas de la LXSC están recubiertas por una lámina de teflón que refleja con 95\% de eficiencia la luz UV (172 nm) emitida por el xenón. La cara de entrada y salida (con respecto a la dirección de vuelo de los fotones) están recubiertas por SiPMs sensibles a la luz UV (fabricados en la actualidad por Hamamatsu y a cuyo desarrollo han contribuido de forma muy importante miembros del GI). El tamaño de los SiPMs puede ajustarse según la aplicación y el coste del dispositivo, variando típicamente entre 3 mm y 6 mm de lado. La LXSC ofrece una buena resolución en energía (del orden del 12 \% FWHM), buena resolución espacial (1 mm) en las tres coordenadas y excelente CRT\footnote{J.M. Benlloch Rodríguez, tesis de Master, Universidad de Valencia, 2015, dirigida por J.J. Gómez-Cadenas. 
 }. {\bf Es posible, por lo tanto, construir en la comunidad valenciana un nuevo tipo de sistema PET basado en la LXSC que suponga, a la vez, una mejora en las prestaciones y una reducción del coste, relativo a los sistemas actuales.}
@@ -71,11 +75,13 @@ El número esperado de fotones en LXe con una constante rápida (2.2 ns) es del 
 
 \subsubsection*{El detector P2}
 
-\begin{figure}
-\centering
+%\begin{figure}
+%\centering
+\begin{center} \figbox[label={fig.P2}]{{\small Esquema del detector P2.}}{
 \includegraphics[width=0.6\textwidth]{img/P2.png}
-\caption{\small Esquema del detector P2.} \label{fig.P2}
-\end{figure} 
+%\caption{\small Esquema del detector P2.} 
+%\label{fig.P2}
+} \end{center}
 
 La medida de la resolución espacial, resolución en energía y resolución CRT requiere la construcción de un sistema de test especializado que denominamos P2 (Figura \ref{fig.P2}). Se trata de dos LXSC independientes, cada una de las cuales está albergada en su propio criostato. Una de las LXSC (PA) tendrá todas las caras internas instrumentadas, a fin de poder utilizar la redundancia de las medidas de las coordenadas $(x,y)$, $(x,z)$, $(y,z)$ y la determinación independiente de la coordenada $z$~para medir la resolución en posición de la LXSC. Asímismo, la comparación de la resolución del primer fotoelectrón entre PA y la segunda LXSC (PB), que sólo tendrá dos caras instrumentadas, permitirá entender la influencia en el CRT del tiempo de tránsito de los fotones.  
 
